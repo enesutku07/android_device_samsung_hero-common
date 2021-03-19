@@ -120,3 +120,33 @@ $(call inherit-product, hardware/samsung_slsi-cm/exynos8890/exynos8890.mk)
 
 # call the proprietary setup
 $(call inherit-product, vendor/samsung/hero-common/hero-common-vendor.mk)
+
+### Ubuntu Touch ###
+
+# Copy files to override
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/ubuntu/device-hacks.conf:system/halium/etc/init/device-hacks.conf \
+    $(LOCAL_PATH)/ubuntu/touch.pa:system/halium/etc/pulse/touch.pa \
+    $(LOCAL_PATH)/ubuntu/servicemanager.rc:system/etc/init/servicemanager.rc \
+    $(LOCAL_PATH)/ubuntu/ofono.override:system/halium/etc/init/ofono.override \
+    $(LOCAL_PATH)/ubuntu/70-hero2lte.rules:system/halium/lib/udev/rules.d/70-android.rules
+
+# oFono quirks
+PRODUCT_PROPERTY_OVERRIDES += \
+    ril.device=samsung_exy_8890
+
+# Sound
+PRODUCT_PACKAGES += \
+    libubuntu_application_api \
+    libcameraservice \
+    libdroidmedia \
+    libcamera_compat_layer \
+    libmedia_compat_layer \
+    libui_compat_layer \
+    libsf_compat_layer \
+    minimediaservice \
+    minisfservice \
+    libminisf \
+    libaudioflingerglue \
+    miniafservice
+### End Ubuntu Touch ###
