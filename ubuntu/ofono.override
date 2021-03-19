@@ -6,8 +6,7 @@ stop on stopping dbus
 expect fork
 respawn
 
-env OFONO_RIL_DEVICE=ril
-#env OFONO_RIL_DEVICE=samsung_exy_8890
+env OFONO_RIL_DEVICE=samsung_exy_8890
 env OFONO_RIL_NUM_SIM_SLOTS=1
 env OFONO_RIL_RAT_LTE=1
 
