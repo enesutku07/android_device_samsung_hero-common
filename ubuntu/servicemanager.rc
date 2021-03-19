@@ -1,0 +1,34 @@
+# Default from frameworks/native/cmds/servicemanager/servicemanager.rc
+service servicemanager /system/bin/servicemanager
+    class core
+    user system
+    group system readproc
+    critical
+    onrestart restart healthd
+    onrestart restart zygote
+    onrestart restart audioserver
+    onrestart restart media
+    onrestart restart surfaceflinger
+    onrestart restart inputflinger
+    onrestart restart drm
+    onrestart restart cameraserver
+    # Following is added for the port
+    onrestart restart miniaf
+
+service miniaf /system/bin/miniafservice
+    class main
+    user system
+    group audio
+
+service minimedia /system/bin/minimediaservice
+    class main
+    user media
+    group audio camera
+    ioprio rt 4
+#   hack to make recorded video playback work
+    setenv LD_PRELOAD /system/lib/libOmxVdec.so
+
+service minisf /system/bin/minisfservice
+    class main
+    user system
+    group graphics
